@@ -57,28 +57,59 @@ Step 3 : Break it Down !
 // Step 4 : Solve / Simplify
 // ========================================================================
 
+/* VERSION 1 
 function charCount(str) {
   // make object to return at end
   let obj = {}
   // loop over string, for each character...
   for (let i = 0; i < str.length; i++) {
     let char = str[i].toLowerCase()
-    // if the char is a number/letter AND is a key in object, add one to count
-    if (
-      typeof char === "number" ||
-      (typeof char === "string" && obj[char] > 0)
-    ) {
-      obj[char] += 1
-    }
-    // else the char is a number/letter AND not in object, add it to object and set value to 1
-    else {
-      obj[char] = 1
-    }
     // if character is something else (space, period, etc) don't do anything
+    if (/[a-z0-9]/.test(char)) {
+      // if the char is a number/letter AND is a key in object, add one to count
+      if (obj[char] > 0) {
+        obj[char] += 1
+      }
+      // else the char is a number/letter AND not in object, add it to object and set value to 1
+      else {
+        obj[char] = 1
+      }
+    }
   }
   // return object at end
   return obj
 }
+ */
+// Final Solution
+function charCount(str) {
+  let obj = {}
+
+  for (let char of str) {
+    // regular expression to check for alphanumeric number/letter ( ignore white space )
+    // if (/[a-z0-9]/.test(char)) {
+    if (isAlphaNumeric(char)) {
+      char = char.toLowerCase()
+      // if char is in object increment or 1
+      obj[char] = ++obj[char] || 1
+    }
+  }
+
+  // return object at end
+  return obj
+}
+
+function isAlphaNumeric(char) {
+  let code = char.charCodeAt(0)
+  if (
+    !(code > 47 && code < 58) && // numberic (0-9)
+    !(code > 64 && code < 91) && // upper alhpa (A-Z)
+    !(code > 96 && code < 123) // lower alpha (a-z)
+  ) {
+    return false
+  }
+  return true
+}
+
 // charCount("aaaa") //{a:4}
 // charCount("hello") //  {h:1, e:1, l:2, o:1}
 // charCount("My PIN number is 182213")
