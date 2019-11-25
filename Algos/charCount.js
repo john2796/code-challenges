@@ -80,13 +80,17 @@ function charCount(str) {
   return obj
 }
  */
+
+// charCount("aaaa") //{a:4}
+// charCount("hello") //  {h:1, e:1, l:2, o:1}
+// charCount("My PIN number is 182213")
+
+// Step 5: look Back and Refactor
 // Final Solution
 function charCount(str) {
   let obj = {}
 
   for (let char of str) {
-    // regular expression to check for alphanumeric number/letter ( ignore white space )
-    // if (/[a-z0-9]/.test(char)) {
     if (isAlphaNumeric(char)) {
       char = char.toLowerCase()
       // if char is in object increment or 1
@@ -98,6 +102,15 @@ function charCount(str) {
   return obj
 }
 
+// Regex - Regular expression
+function isAlphaNumericRegex(char) {
+  // check for numbers / letters
+  if (/[a-z0-9A-Z]/.test(char)) {
+    return true
+  }
+  return false
+}
+// faster
 function isAlphaNumeric(char) {
   let code = char.charCodeAt(0)
   if (
@@ -109,10 +122,4 @@ function isAlphaNumeric(char) {
   }
   return true
 }
-
-// charCount("aaaa") //{a:4}
-// charCount("hello") //  {h:1, e:1, l:2, o:1}
-// charCount("My PIN number is 182213")
-console.log(charCount("hello there!"))
-
-// Step 5: look Back and Refactor
+console.log(charCount("HHHHello there!"))
