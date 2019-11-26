@@ -35,3 +35,36 @@ function validAnagram(str1, str2) {
 validAnagram(" ", " ")
 validAnagram("aaz", "zza")
 validAnagram("anagram", "nagaram")
+
+
+
+// Instructor solution 
+
+function validAnagram(first, second){
+  if(!first.length !== second.length) return false;
+
+  const lookup = {}
+
+  // loop first str
+
+  for (let i = 0 ; i < first.length; i++){
+    let letter = first[i]
+
+    // if letter exists ,increment ,o therwise set to 1
+    lookup[letter] = ++lookup[letter] || 1
+  }
+
+ for(let i =0; i < second.length; i++){
+   let letter second[i]
+   // can't find letter or letter is zero then it's not an    anagram
+   // when encounter with 0 falsey return false
+   if(!lookup[letter]){
+     return false
+   } else {
+     // ? subtract 1 untill it's sets to 0
+     lookup[letter] -= 1
+   }
+ }
+return true;
+
+}
