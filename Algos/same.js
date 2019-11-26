@@ -1,4 +1,3 @@
-
 /* Frequency Counter Pattern : example
 
 
@@ -47,20 +46,39 @@
   STEP : 5 Look back and refactor
  */
 
+function same(arr1, arr2) {
+  // check if length are same
+  if (arr1.length !== arr2.length) return
 
-function same(arr1 , arr2) {
-  // goal is to compare first arr to 2nd arr
-  // before we compare 1st arr to 2nd arr we need to squared first
-  
-  // we loop through first array 
-      // - if the length is the same 
-      //   - grab each item in the array compare with arr2 items
-      // - else 
-      //    - return false
+  // store 2 arr to object
+  let frequencyCounter1 = {}
+  let frequencyCounter2 = {}
 
-  // assume second arr2 is always squared 
-  /// return false if we don't hit same frequency
+  // loop through array and store them in the object
+  // count how many times val exists
+  for (let val of arr1) {
+    frequencyCounter1[val] = ++frequencyCounter1[val] || 1
+  }
+  for (let val of arr2) {
+    frequencyCounter2[val] = ++frequencyCounter2[val] || 1
+  }
+  console.log(frequencyCounter1, frequencyCounter2)
+
+  // loop through first object
+  for (let key in frequencyCounter1) {
+    // the key value correspond ?
+    // first squared key then check if it does not exists on object2
+    if (!(key ** 2 in frequencyCounter2)) {
+      return false
+    }
+    // the count of how many times they exists correspond ?
+    // comparing their values the squared version and original
+    if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
+      return false
+    }
+  }
+
+  return true
 }
 
-
-same([1,2,3], [4,1,9])
+same([1, 2, 3], [4, 1, 9])
