@@ -72,6 +72,24 @@ function countUniqueValue1(arr) {
   return i + 1
 }
 
+// using while loop
+function countUniqueValues(arr) {
+  if (arr.length === 0) return 0
+
+  let i = 0
+  let j = 0
+
+  while (j < arr.length - 1) {
+    // loop through the length of the arr
+    j++
+    // if they are not equal , increment, replace i = j
+    if (arr[i] !== arr[j]) {
+      i++
+      arr[i] = arr[j]
+    }
+  }
+  return i + 1
+}
 // countUniqueValues([ 1,1,1,1,1,2 ]) // 2
 // countUniqueValues([ 1,2,3,4,4,4,7,7,12,12,13,22,21 ]) // 9
 // countUniqueValues([ ]) // 0
