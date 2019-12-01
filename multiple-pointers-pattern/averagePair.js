@@ -33,8 +33,8 @@ function averagePair(arr, target) {
 
   while (left < right) {
     let average = (arr[left] + arr[right]) / 2
-    console.log(arr[left], "+", arr[right], "/ 2")
-    console.log(average, target)
+    // console.log(arr[left], "+", arr[right], "/ 2")
+    // console.log(average, target)
     if (average === target) {
       return true
     } else if (average > target) {
