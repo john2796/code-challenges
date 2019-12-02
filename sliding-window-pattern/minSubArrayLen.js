@@ -27,6 +27,7 @@ function minSubArrayLen(nums, sum) {
     // if current window doesn't add up to the given sum then
     // move the window to right
     if (total < sum && end < nums.length) {
+      console.log()
       total += nums[end]
       end++
     }
