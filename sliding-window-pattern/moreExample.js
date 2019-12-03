@@ -1,10 +1,14 @@
-/* Sliding Window */
+/* Sliding Window 
+  Set of questions and examples
+*/
 
 /*
 Find the max subarray of a fixed size K
+
 Example input:
 [4,2,1,7,8,1,2,8,1,0]
 */
+
 function findMaxSumSubarray(arr, k) {
   let maxValue = 0
   let currentRunningSum = 0
@@ -23,5 +27,28 @@ function findMaxSumSubarray(arr, k) {
   }
   return maxValue
 }
-const test = [4, 2, 1, 7, 8, 1, 2, 8, 1, 0]
-findMaxSumSubarray(test, 3)
+const test1 = [4, 2, 1, 7, 8, 1, 2, 8, 1, 0]
+findMaxSumSubarray(test1, 3)
+
+/*Find Smallest subarray with given sum*/
+function smallestSubarray(arr, targetSum) {
+  let minWindowSize = Infinity
+  let currentRunningSum = 0
+  let j = 0
+
+  for (let i = 0; i < arr.length; i++) {
+    currentRunningSum += arr[i]
+
+    while (currentRunningSum >= targetSum) {
+      // i - j + 1 , will give length of nums added to get value >= 8
+      minWindowSize = Math.min(minWindowSize, i - j + 1)
+      // shrink , move to right
+      currentRunningSum -= arr[j]
+      j++
+    }
+  }
+  return minWindowSize
+}
+
+const test2 = [4, 2, 2, 7, 8, 1, 2, 8, 1, 0]
+// smallestSubarray(test2, 8)
