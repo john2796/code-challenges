@@ -52,17 +52,3 @@ function findLongestSubstring(str) {
 // findLongestSubstring('bbbbbb') // 1
 // findLongestSubstring('longestsubstring') // 8
 findLongestSubstring("thisishowwedoit") // 6
-/*
- longest = 3
- seen = {
-  t:4,
-  ..
-  ..
-  s:5,
- }
- 0  1  2  3  4  5  6  7  8  9 
- t  h  i  s  i  s  h  o  w  w  e  d  o  i  t 
-                  p1
-                        p2
-
-*/
