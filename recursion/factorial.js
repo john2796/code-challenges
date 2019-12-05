@@ -36,3 +36,28 @@ function factorialIterative(num) {
   return result
 }
 factorialIterative(5)
+
+/* Factorial Recursion 
+
+ - A factorial is the product of an integer and all the integers below it 
+ - e.g factorial four (4!) === 24, 4 * 3 * 2 * 1
+ - factorial zero (0!) is always 1  
+*/
+
+function factorialRecursion(n) {
+  if (n === 0 || n === 1) return 1
+  return n * factorialRecursion(n - 1)
+}
+
+// factorialRecursion(1) // 1
+// factorialRecursion(2) // 2
+// factorialRecursion(4) // 24
+// factorialRecursion(7) // 5040
+
+/*
+n * factorialRecursion(n -1)
+  4 * factorialRecursion(3)      (4*6) 24
+    3 * factorialRecursion(2)    (3*2)
+      2 * factorialRecursion(1)  (2*1)
+          return 1
+*/
