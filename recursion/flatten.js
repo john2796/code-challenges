@@ -2,7 +2,7 @@ function flatten(a) {
   if (a.length === 0) return []
   let newArr = []
   for (let val of a) {
-    console.log(Array.isArray(val))
+    // console.log(Array.isArray(val))
     // check if val is an array
     if (Array.isArray(val)) {
       // spread old vals , u can also use concat
