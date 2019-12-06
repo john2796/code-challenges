@@ -59,6 +59,7 @@ function BinarySearch(arr, target) {
 }
 // BinarySearch([1,2,3,4,5], 2)
 
+// recursive version
 function BinarySearchRecursive(arr, target, l, r) {
   if (arr.length === 0) return -1
   // console.log(l, r)
