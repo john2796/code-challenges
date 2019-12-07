@@ -4,7 +4,7 @@ function linearSearch(arr, target) {
 }
 linearSearch([5, 2, 3, 1, 51, 12, 22])
 
-/*Psuedo code
+/*linearSearch Psuedo code
   -[x] linear search psuedocode
   -[x] This func accepts an array and a value
   -[x] loop through the array and check if the current array element is equal to the value
@@ -60,19 +60,48 @@ function BinarySearch(arr, target) {
 // BinarySearch([1,2,3,4,5], 2)
 
 // recursive version
-function BinarySearchRecursive(arr, target, l, r) {
+function bstRecursive(arr, target, l, r) {
   if (arr.length === 0) return -1
   // console.log(l, r)
   while (l <= r) {
     let mid = Math.floor((l + r) / 2)
     if (arr[mid] === target) return mid
     if (arr[mid] < target) {
-      return BinarySearch(arr, target, mid + 1, r)
+      return bstRecursive(arr, target, mid + 1, r)
     } else {
-      return BinarySearch(arr, target, l, mid - 1)
+      return bstRecursive(arr, target, l, mid - 1)
     }
   }
   return -1
 }
 let test = [1, 2, 3, 4, 5]
-BinarySearchRecursive(test, 11, 0, test.length - 1)
+bstRecursive(test, 11, 0, test.length - 1)
+
+/*  Naive String Search
+- suppose you want to count the number of times
+- a smaller string appears in a longer string
+- straigtforward approach 
+- involves checking pairs of characters individually
+
+Pseudocode
+- Loop over the longer string
+- Loop over the shorter string
+- if the characters don't match, break out the inner loop
+- if the characters do match , keep going
+- if you complete the inner loop and find a match, 
+  increment the count of   matches
+- return the count
+ */
+
+function naiveSearchString(long, short) {
+  let count = 0
+  for (let i = 0; i < long.length; i++) {
+    for (let j = 0; j < short.length; j++) {
+      // console.log(short[j] , long[i + j])
+      if (short[j] !== long[i + j]) break
+      if (j === short.length - 1) count++
+    }
+  }
+  return count
+}
+naiveSearchString("lorie loled", "lol")
