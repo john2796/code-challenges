@@ -1,3 +1,9 @@
+function swap(arr, idx1, idx2) {
+  let temp = arr[idx1]
+  arr[idx1] = arr[idx2]
+  arr[idx2] = temp
+}
+
 function sort(arr) {
   return arr.sort((a, b) => a > b)
 }
@@ -10,18 +16,12 @@ sortByLength(["miiko", "pogi", "is ", "in ", "the", "house"]) // sort by length
 
 /* BubbleSort O(n^2) */
 function bubbleSort(arr) {
-  //when the code is sorted already break out the loop
   let noSwaps
-  // looping backwards , helps unecessary comparison, we need to use i for inner loop
   for (let i = arr.length; i > 0; i--) {
     noSwaps = true
     for (let j = 0; j < i - 1; j++) {
-      // shrinking the end by 1 , to prevent from comparing to undefined(j+1) and the large num at the end
-      console.log(arr, arr[j], arr[j + 1])
       if (arr[j] > arr[j + 1]) {
-        let temp = arr[j] // SWAP!
-        arr[j] = arr[j + 1]
-        arr[j + 1] = temp
+        swap(arr, j, j + 1)
         noSwaps = false
       }
     }
@@ -31,32 +31,57 @@ function bubbleSort(arr) {
 }
 bubbleSort([37, 45, 29, 8, 12, 88, -3])
 
+/* Selection Sort  O(n^2) 
+- store the first elem as the smallest value you've seen so far.
+- compare next item i + 1, so it doesn't compare 0 - 0, 1 - 1, etc...
+- compare this item to the next item in the array until you find a smaller number.
+- if a smaller number is found , designated that smaller num to new 'minimum' and continue until end of arr.
+- if the 'min' is not the val(index) you initially began with, swap the two values
+- repeat this with the next element until the array is sorted
+
+*/
+function selectionSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let lowest = i
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[lowest]) lowest = j
+    }
+    if (i !== lowest) swap(arr, i, lowest)
+  }
+  return arr
+}
+selectionSort([5, 3, 4, 1, 2])
+
 function swap(arr, idx1, idx2) {
   let temp = arr[idx1]
   arr[idx1] = arr[idx2]
   arr[idx2] = temp
 }
-/* Selection Sort  O(n^2) */
+/* Selection Sort  O(n^2) 
+  - start by picking the second element in the array
+  - now compare the second element with the one before it and swap if necessary
+  - continue to the next element and if it is in the incorrect order, iterate throguh the sorted portion (i.e the left side) to place the element in the correct place.
+  - Repeat until the array is sorted.
+*/
 
-function selectionSort(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    // store the first elem as the smallest value you've seen so far.
-    let lowest = i
-    // compare next item i + 1, so it doesn't compare 0 - 0, 1 - 1, etc...
-    for (let j = i + 1; j < arr.length; j++) {
-      console.log(i, j)
-      // compare this item to the next item in the array until you find a smaller number.
-      if (arr[j] < arr[lowest]) {
-        // if a smaller number is found , designated that smaller num to new 'minimum' and continue until end of arr.
-        lowest = j
-      }
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let currentVal = arr[i]
+    for (var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+      arr[j + 1] = arr[j]
     }
-    // if the 'min' is not the val(index) you initially began with, swap the two values
-    if (i !== lowest) {
-      swap(arr, i, lowest)
-    }
-    // repeat this with the next element until the array is sorted
+    arr[j + 1] = currentVal
+    console.log(arr)
   }
   return arr
 }
-selectionSort([5, 3, 4, 1, 2])
+/* 
+  2,1,9,76,4
+  2 > 1 ? yes , swap
+  1,2,9,76,4
+  2>9 ? no
+  9>76 ? no
+  76>4 yes , swap
+*/
+
+insertionSort([2, 1, 9, 76, 4])
