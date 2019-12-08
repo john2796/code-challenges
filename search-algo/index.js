@@ -98,8 +98,8 @@ function naiveSearchString(long, short) {
   for (let i = 0; i < long.length; i++) {
     for (let j = 0; j < short.length; j++) {
       // console.log(short[j] , long[i + j])
-      if (short[j] !== long[i + j]) break
-      if (j === short.length - 1) count++
+      if (short[j] !== long[i + j]) break // reset if  'i' is not matching j char
+      if (j === short.length - 1) count++ // increment count if all letter in short string matches in long str
     }
   }
   return count
