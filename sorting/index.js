@@ -52,12 +52,7 @@ function selectionSort(arr) {
 }
 selectionSort([5, 3, 4, 1, 2])
 
-function swap(arr, idx1, idx2) {
-  let temp = arr[idx1]
-  arr[idx1] = arr[idx2]
-  arr[idx2] = temp
-}
-/* Selection Sort  O(n^2) 
+/* insertionSort  O(n^2) 
   - start by picking the second element in the array
   - now compare the second element with the one before it and swap if necessary
   - continue to the next element and if it is in the incorrect order, iterate throguh the sorted portion (i.e the left side) to place the element in the correct place.
