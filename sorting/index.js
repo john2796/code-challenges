@@ -124,3 +124,37 @@ function mergeSort(arr) {
   return merge(left, right)
 }
 mergeSort([10, 24, 76, 73])
+
+/* Pivot Pseudocode - put smaller item to left adn larger to right and return index */
+function pivotPartioner(arr, start = 0, end = arr.length - 1) {
+  let swap = (arr, idx1, idx2) => {
+    let temp = arr[idx1]
+    arr[idx1] = arr[idx2]
+    arr[idx2] = temp
+  }
+  // We are assuming th epivot is always the first element
+  let pivot = arr[start]
+  let swapIdx = start
+  for (let i = start + 1; i <= end; i++) {
+    if (pivot > arr[i]) {
+      swapIdx++
+      swap(arr, swapIdx, i)
+    }
+  }
+  // swap the pivot from the start the swapPoint
+  swap(arr, start, swapIdx)
+  console.log(swapIdx)
+  return swapIdx
+}
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivotPartioner(arr, left, right)
+    quickSort(arr, left, pivotIndex - 1) // left
+    quickSort(arr, pivotIndex + 1, right) // right
+  }
+  return arr
+}
+quickSort([3, 2, 5, 6, 4, 1])
+// 3,2,5,6,4,1
+// 3,2,1  6,4,5
+// 1,2,3  4 5 6
