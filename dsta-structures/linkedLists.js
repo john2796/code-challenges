@@ -92,6 +92,23 @@ class SinglyLinkedLists {
     }
     return false
   }
+  // prev .   temp
+  // one ---> newNode ---> two ---> three
+  // prev.next = newNode
+  // newNode.next = temp
+  insert(value, index) {
+    if (index < 0 || index > this.length) return false
+    if (index === this.length) return !!this.push(value)
+    if (index === 0) return !!this.unshift(value)
+    let prev = this.get(index - 1)
+    let newNode = new Node(value)
+    let temp = prev.next
+    prev.next = newNode
+    newNode.next = temp
+
+    this.length++
+    return true
+  }
 }
 let l = new SinglyLinkedLists()
 l.push("one")
