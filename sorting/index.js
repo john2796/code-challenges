@@ -158,3 +158,44 @@ quickSort([3, 2, 5, 6, 4, 1])
 // 3,2,5,6,4,1
 // 3,2,1  6,4,5
 // 1,2,3  4 5 6
+
+// Radix Sort Helpers
+// returns the digit in num at the given place value
+// example:
+// getDigit(12345,0)  = 5
+// getDigit(12345,1)  = 4
+// getDigit(12345,2)  = 3
+// getDigit(12345,3)  = 2
+// getDigit(12345,4)  = 1
+// getDigit(12345,5)  = 0
+function getDigit(num, i) {
+  return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10
+}
+function digitCount(num) {
+  if (num === 0) return 1
+  return Math.floor(Math.log10(Math.abs(num))) + 1
+}
+function mostDigits(nums) {
+  let maxDigits = 0
+  for (let i = 0; i < nums.length; i++) {
+    maxDigits = Math.max(maxDigits, digitCount(nums[i]))
+  }
+  return maxDigits
+}
+
+function radixSort(nums) {
+  let maxDigitCount = mostDigits(nums)
+  for (let k = 0; k < maxDigitCount; k++) {
+    // break to buckets
+    let digitBuckets = Array.from({ length: 10 }, () => [])
+    // add nums to bucket
+    for (let i = 0; i < nums.length; i++) {
+      let digit = getDigit(nums[i], k)
+      digitBuckets[digit].push(nums[i])
+    }
+    // combine array
+    nums = [].concat(...digitBuckets)
+  }
+  return nums
+}
+radixSort([4, 3, 2, 1])

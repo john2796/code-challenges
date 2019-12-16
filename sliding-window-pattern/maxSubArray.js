@@ -4,7 +4,6 @@ function maxSubArraySum(arr, n) {
   // two var , max , temp
   let max = 0
   let temp = 0
-
   // check if arr is less than num
   if (arr.length < n) return null
   // loop through num and and maxSum
@@ -13,18 +12,9 @@ function maxSubArraySum(arr, n) {
   }
   temp = max
   for (let i = n; i < arr.length; i++) {
-    // console.log(max, temp, arr[i - n], arr[i])
-    // 17 17 2 2
-    // 17 17 6 1
-    // 17 12 9 8
-    // 17 11 2 5
-    // 17 14 1 6
-    // 19 19 8 3
-    // 19
     temp = temp - arr[i - n] + arr[i]
     max = Math.max(max, temp)
   }
-
   return max
 }
 
