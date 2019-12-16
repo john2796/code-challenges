@@ -126,12 +126,12 @@ function mergeSort(arr) {
 mergeSort([10, 24, 76, 73])
 
 /* Pivot Pseudocode - put smaller item to left adn larger to right and return index */
+let swap = (arr, idx1, idx2) => {
+  let temp = arr[idx1]
+  arr[idx1] = arr[idx2]
+  arr[idx2] = temp
+}
 function pivotPartioner(arr, start = 0, end = arr.length - 1) {
-  let swap = (arr, idx1, idx2) => {
-    let temp = arr[idx1]
-    arr[idx1] = arr[idx2]
-    arr[idx2] = temp
-  }
   // We are assuming th epivot is always the first element
   let pivot = arr[start]
   let swapIdx = start
@@ -146,6 +146,7 @@ function pivotPartioner(arr, start = 0, end = arr.length - 1) {
   console.log(swapIdx)
   return swapIdx
 }
+
 function quickSort(arr, left = 0, right = arr.length - 1) {
   if (left < right) {
     let pivotIndex = pivotPartioner(arr, left, right)
