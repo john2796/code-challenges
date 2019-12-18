@@ -27,10 +27,27 @@ class DoublyLinkedList {
     this.length++
     return this
   }
-}
+  //tail
+  // 1 <--> 2 <--> 3 <--> 4 <--> 5
+  // prev
+  // 1 <--> 2 <--> 3 <--> 4
+  pop() {
+    if (!this.head) return undefined
+    let removed = this.tail
+    if (this.head === this.tail) {
+      this.head = null
+      this.tail = null
+    } else {
+      this.tail = removed.prev
+      this.tail.next = null
+      removed.prev = null
+    }
+    this.length--
+    return removed
+  }
+} // end of class
 
-let d = new DoublyLinkedList()
-d.push("one")
-d.push("two")
-d.push("three")
-d.push("four")
+let l = new DoublyLinkedList()
+l.push("one")
+l.push("two")
+l.push("three")
