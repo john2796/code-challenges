@@ -75,14 +75,13 @@ class DoublyLinkedList {
   // 3 <--> 1 <--> 2
   unshift(val) {
     let newNode = new Node(val)
-    let current = this.head
     if (!this.head) {
       this.head = newNode
       this.tail = newNode
     } else {
+      this.head.prev = newNode
+      newNode.next = this.head
       this.head = newNode
-      this.head.next = current
-      current.prev = newNode
     }
     this.length++
     return this
