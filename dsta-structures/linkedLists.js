@@ -32,6 +32,10 @@ class SinglyLinkedLists {
   }
   pop() {
     if (!this.head) return undefined
+    if (this.length === 0) {
+      this.head = null
+      this.tail = null
+    }
     let current = this.head
     let prev = current
     while (current.next) {
@@ -41,21 +45,18 @@ class SinglyLinkedLists {
     this.tail = prev
     this.tail.next = null
     this.length--
-    if (this.length === 0) {
-      this.head = null
-      this.tail = null
-    }
     return current
   }
   shift() {
     if (!this.head) return undefined
     let current = this.head
-    this.head = current.next
-    this.length--
-    if (this.length === 0) {
+    if (this.length === 1) {
       this.head = null
       this.tail = null
+    } else {
+      this.head = current.next
     }
+    this.length--
     return current
   }
   // newNode
