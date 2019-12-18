@@ -109,6 +109,28 @@ class SinglyLinkedLists {
     this.length++
     return true
   }
+
+  reverse(){
+    let node = this.head
+    this.head = this.tail
+    this.tail = node
+    let next;
+    let prev = null    
+    while(node){
+      next = node.next
+      console.log(node.next,'what is me ')
+      node.next = prev
+      prev = node
+      node = next
+       
+    }
+    return this
+  }
+  
+}
+// 100  -->  201  -->  250  -->  350  -->   999
+//           prev      node                 next
+// 100  <-- 201 <-- null 
 }
 let l = new SinglyLinkedLists()
 l.push("one")
