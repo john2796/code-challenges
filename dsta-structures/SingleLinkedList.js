@@ -4,15 +4,16 @@ class Node {
     this.next = null
   }
 }
-class SinglyLinkedLists {
+
+class SinglyLinkedList {
   constructor() {
-    this.head = null
     this.tail = null
+    this.head = null
     this.length = 0
   }
+  // add to end
   push(val) {
     let newNode = new Node(val)
-
     if (!this.head) {
       this.head = newNode
       this.tail = newNode
@@ -23,45 +24,38 @@ class SinglyLinkedLists {
     this.length++
     return this
   }
-  traverse() {
-    let current = this.head
-    while (current) {
-      console.log(current.val)
-      current = current.next
-    }
-  }
+  // remove to end
   pop() {
     if (!this.head) return undefined
-    if (this.length === 0) {
-      this.head = null
-      this.tail = null
-    }
     let current = this.head
     let prev = current
     while (current.next) {
       prev = current
       current = current.next
     }
+
     this.tail = prev
     this.tail.next = null
     this.length--
-    return current
-  }
-  shift() {
-    if (!this.head) return undefined
-    let current = this.head
-    if (this.length === 1) {
+    if (this.length === 0) {
       this.head = null
       this.tail = null
-    } else {
-      this.head = current.next
     }
-    this.length--
     return current
   }
-  // newNode
-  // four--> one --> two --> three
-  //         head             tail
+  // remove in the beginnin
+  shift() {
+    if (!this.head) return undefined
+    let current = this.heaad
+    this.head = current.next
+    this.length--
+    if (this.length === 0) {
+      this.head = null
+      this.tail = null
+    }
+    return current
+  }
+  // add at the beginning
   unshift(val) {
     let newNode = new Node(val)
     if (!this.head) {
@@ -75,65 +69,74 @@ class SinglyLinkedLists {
     return this
   }
   get(index) {
-    if (index < 0 || index >= this.length) return null
-    let counter = 0
+    if (index >= this.length || index < 0) return null
     let current = this.head
-    while (counter !== index) {
+    let count = 0
+    while (count !== index) {
       current = current.next
-      counter++
+      count++
     }
     return current
   }
-
   set(value, index) {
-    let foundNode = this.get(index)
+    let foundNode = get(index)
     if (foundNode) {
       foundNode.val = value
-      return true
     }
     return false
   }
-  // prev .   temp
-  // one ---> newNode ---> two ---> three
-  // prev.next = newNode
-  // newNode.next = temp
-  insert(value, index) {
+  insert(val, index) {
     if (index < 0 || index > this.length) return false
-    if (index === this.length) return !!this.push(value)
-    if (index === 0) return !!this.unshift(value)
-    let prev = this.get(index - 1)
-    let newNode = new Node(value)
+    if (index === this.length) return !!this.push(val)
+    if (index === 0) return !!this.unshift(val)
+    // 1 -> 5 -> 2 -> 3 -> 4
+    let newNode = new Node(val)
+    let prev = get(index - 1)
     let temp = prev.next
     prev.next = newNode
     newNode.next = temp
-
     this.length++
     return true
   }
-
-  reverse(){
+  remove(index) {
+    if (index < 0 || index > this.length) return undefined
+    if (index === this.length - 1) return this.prop()
+    if (index === 0) return this.shift()
+    let prev = get(index - 1)
+    let removed = prev.next
+    prev.next = removed.next
+    this.length--
+    return removed
+  }
+  print() {
+    let current = this.head
+    let result = []
+    while (current) {
+      result.push(current.val)
+      current = current.next
+    }
+    return result
+  }
+  reverse() {
     let node = this.head
     this.head = this.tail
     this.tail = node
-    let next;
-    let prev = null    
-    while(node){
+    let next
+    let prev = null
+    while (node) {
       next = node.next
-      console.log(node.next,'what is me ')
       node.next = prev
       prev = node
       node = next
-       
     }
     return this
   }
-  
 }
 // 100  -->  201  -->  250  -->  350  -->   999
 //           prev      node                 next
-// 100  <-- 201 <-- null 
-}
-let l = new SinglyLinkedLists()
+// 100  <-- 201 <-- null
+
+let l = new SinglyLinkedList()
 l.push("one")
 l.push("two")
 l.push("three")
