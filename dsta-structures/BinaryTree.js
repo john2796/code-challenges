@@ -13,7 +13,7 @@ class BinarySearchTree {
 
   insert(value) {
     let newNode = new Node(value)
-    if (this.root === null) {
+    if (!this.root) {
       this.root = newNode
       return this
     }
@@ -34,28 +34,13 @@ class BinarySearchTree {
       }
     }
   }
-
-  contains(value) {
-    if (this.root === null) return false
-    let current = this.root
-    while (current) {
-      if (value < current.value) {
-        current = current.left
-      } else if (value > current.value) {
-        current = current.right
-      } else {
-        return true
-      }
-    }
-
-    return false
-  }
-
   find(value) {
     if (!this.root) return false
     let current = this.root
     while (current) {
-      if (value === current.value) return current
+      if (value === current.value) {
+        return current
+      }
       if (value < current.value) {
         current = current.left
       } else {
@@ -64,22 +49,57 @@ class BinarySearchTree {
     }
     return false
   }
-
-  // Breadth First Search
-  bfs(value) {
+  bfs() {
+    let res = []
     let queue = []
-    let data = []
     let current = this.root
     queue.push(current)
     while (queue.length) {
       current = queue.shift()
-      data.push(current.value)
+      res.push(current.value)
       if (current.left) queue.push(current.left)
       if (current.right) queue.push(current.right)
     }
+    return res
+  }
+
+  // starting from node get left side then right
+  dfsPreOrder() {
+    let data = []
+    function traverse(node) {
+      data.push(node.value)
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+    }
+
+    traverse(current)
     return data
   }
-} // end of bst
+
+  // same step with PreOrder , visit data first then push them to final array
+  dfsPostOrder() {
+    let data = []
+    function traverse(node) {
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+      data.push(node.value)
+    }
+    traverse(this.root)
+    return data
+  }
+
+  // traversing in Order , visit left then push node to result
+  dfsInOrder() {
+    let data = []
+    function traverse(node) {
+      if (node.left) traverse(node.left)
+      data.push(node.value)
+      if (node.right) traverse(node.right)
+    }
+    traverse(this.root)
+    return data
+  }
+} // end of class
 
 var t = new BinarySearchTree()
 t.insert(10)
