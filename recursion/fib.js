@@ -3,7 +3,7 @@ Write a recursive func ,
 - which accepts a number and returns the nth number in the fibonacci sequence. 
 - Recall that the Fibonacci sequence is the sequence of whole numbers 1,1,2,3,5,8 
 - which starts with 1 and 1  ,
-- and where every number there after is equal to the sum of the previous two numbers
+- and where every number there after is equal to the sum of the previous two n–umbers
 
 step 1 Understanding the problem 
   The Fibonacci Sequence is the series of numbers:
