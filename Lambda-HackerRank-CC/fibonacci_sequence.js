@@ -1,0 +1,3 @@
+// F (1) = 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
+// The Fibonacci sequence is a set of numbers that starts with a one or a zero, followed by a one, and proceeds based on the rule that each number (called a Fibonacci number) is equal to the sum of the preceding two numbers
+// The Rule is xn = xn-1 + xn-2
