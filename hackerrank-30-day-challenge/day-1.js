@@ -35,13 +35,14 @@ function main() {
   var d2 = 0
   var s2 = ""
   // Read and save an integer, double, and String to your variables.
-  i2 = input_stdin
-  d2 = input_stdin_array
-  s2 = input_currentline
+  i2 = input_stdin_array[0]
+  d2 = input_stdin_array[1]
+  s2 = input_stdin_array[2]
+
   // Print the sum of both integer variables on a new line.
-  console.log(i + i2)
+  console.log(i + Number(i2))
   // Print the sum of the double variables on a new line.
-  console.log(d + d2)
+  console.log((d + Number(d2)).toFixed(1))
   // Concatenate and print the String variables on a new line
   // The 's' variable above should be printed first.
   console.log(s + s2)
