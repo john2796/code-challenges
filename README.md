@@ -1,5 +1,5 @@
 ## ALGOS
 
 
-#### Author
+### Author
 John Benedict Miranda
