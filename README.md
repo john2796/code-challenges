@@ -2,4 +2,4 @@
 
 
 ### Author
-🔥 John Benedict Miranda 🔥
+ John Benedict Miranda 
