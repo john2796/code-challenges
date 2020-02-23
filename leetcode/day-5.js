@@ -28,3 +28,11 @@ var generate = function(numRows) {
 }
 
 console.log(generate(5))
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function(x) {
+  return Math.floor(Math.sqrt(x))
+}
