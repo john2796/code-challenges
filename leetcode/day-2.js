@@ -27,10 +27,10 @@ var maxDepth = function(root) {
   if (root === null) {
     return 0
   }
-  let left = maxDepth(root.left)
-  let right = maxDepth(root.right)
+  let leftNode = maxDepth(root.left)
+  let rightNode = maxDepth(root.right)
 
   // Divide and Conquer
-  let max = Math.max(left, right) + 1
+  let max = Math.max(leftNode, rightNode) + 1
   return max
 }
