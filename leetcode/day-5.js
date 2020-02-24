@@ -36,3 +36,8 @@ console.log(generate(5))
 var mySqrt = function(x) {
   return Math.floor(Math.sqrt(x))
 }
+
+/**
+ * @param {number} n
+ * @return {string}
+ */
