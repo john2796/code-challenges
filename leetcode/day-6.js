@@ -37,3 +37,43 @@ var increasingBST = function(root) {
   traverse(root)
   return dummy.right
 }
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+   Goal Remove Duplicates from Sorted List
+  
+  Psuedo Code : 
+  Given everything is sorted the next value has to be a new value 
+  If dups is found move it's pointer to the next value 
+  For example 1->1->2   , 1->2
+ */
+var deleteDuplicates = function(head) {
+  // check if there's no head then just return
+  if (!head) {
+    return head
+  }
+  let node = head.next
+  let prev = head
+  // loop
+  while (node) {
+    // console.log(node.val, prev.val)
+    // 1 1
+    // 2 1
+    if (node.val !== prev.val) {
+      // make the prev next =
+      prev.next = node
+      prev = node
+    }
+    node = node.next
+  }
+  prev.next = null
+  return head
+}
