@@ -14,8 +14,12 @@
     rearrange the tree in "in-order" 
     
     Psuedo Code 
-    Make a variable that will hold the result
-    Traverse the tree 
+    Make a dummy variable to create new TreeNode
+    Make a variable name node that will be the final returned value
+    Use Recursion to traverse through the Node
+    Check for base case when there's no root
+    start by traversing left
+    set value and move pointer
  */
 var increasingBST = function(root) {
   let dummy = new TreeNode()
