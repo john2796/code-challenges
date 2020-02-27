@@ -44,3 +44,53 @@ function areThereDuplicates(...args) {
 
   return false
 }
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {character}
+ */
+var findTheDifference = function(s, t) {
+  let obj1 = {}
+  let obj2 = {}
+
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i]
+    obj1[char] = ++obj1[char] || 1
+  }
+  for (let i = 0; i < t.length; i++) {
+    let char = t[i]
+    obj2[char] = ++obj2[char] || 1
+  }
+  // console.log(obj1,obj2)
+  for (let key in obj1) {
+    console.log(key)
+    if (obj1[key] !== obj2[key]) {
+      return key
+    }
+  }
+
+  for (let key in obj2) {
+    console.log(key)
+    if (obj1[key] !== obj2[key]) {
+      return key
+    }
+  }
+  return ""
+  // let longer = s.length > t.length ? s : t
+
+  // s.split("").sort().join("")
+  // t.split("").sort().join("")
+  // for(let i=0; i < longer.length; i++){
+  //   // console.log(s[i] , t[i])
+  //   if(s[i] !== t[i]) {
+  //     return longer[i]
+  //   }
+  // }
+  //   return ""
+  // return result
+}
+// "e"
+findTheDifference("abcd", "abcde")
+// findTheDifference("a","aa")
+// // findTheDifference( "ymbgaraibk","ymbgaraibk")
