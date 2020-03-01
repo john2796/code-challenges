@@ -16,13 +16,14 @@ step 1 Understanding the problem
   And the 5 is (2+3),
   and so on!
 */
-function fib(n) {
-  // add whatever parameters you deem necessary - good luck!
-  if (n <= 1) return n
-  return fib(n - 1) + fib(n - 2)
-}
+var recursive = function(n) {
+  if (n <= 2) {
+    return 1
+  }
 
-fib(4)
+  return recursive(n - 1) + recursive(n - 2)
+}
+console.log(recursive(4))
 // 3
 // fib(10) // 55
 // fib(28) // 317811
