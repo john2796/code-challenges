@@ -59,3 +59,68 @@ function validAnagram(first, second){
  }
 return true;
 }
+
+
+
+
+/**
+ * Given a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
+
+You can use each character in text at most once. Return the maximum number of instances that can be formed.
+
+ 
+ * @param {string} text
+ * @return {number}
+ 
+ form as many instances of the word "balloon" as possible
+ */
+var maxNumberOfBalloons = function(text) {
+  let str = "balloon"
+  let balloon ={}
+  let count = 0
+  
+  for(let i = 0; i<str.length;i++){
+      let char = str[i]
+      balloon[char] = ++balloon[char] || 1
+  }
+  
+let obj = {}
+for(let i = 0; i<text.length;i++){
+    let char = text[i]
+      obj[char] = ++obj[char] || 1
+  }
+  
+  
+// { b: 1, a: 1, l: 2, o: 2, n: 1 }  
+// { n: 1, l: 2, a: 1, e: 1, b: 1, o: 2, k: 1 } 
+let len = str.length - 1
+let flag = true
+while(flag){
+  for(let key in balloon){
+      // check if key match 
+      if(obj[key] < 2 ) flag = false
+      if(obj[key]){
+          // check actual values
+//             console.log('values', obj[key] , balloon[key])
+//             console.log(len)
+          if(obj[key] >= balloon[key]) {
+              len--
+              if(len === 1) {
+                count++
+                len = str.length - 1
+              }
+          }
+          obj[key] -= balloon[key]
+      } else {
+        flag = false
+      }
+  }
+}
+  // reset len
+  len = str.length -1
+return count
+  
+};
+// maxNumberOfBalloons("krhizmmgmcrecekgyljqkldocicziihtgpqwbticmvuyznragqoyrukzopfmjhjjxemsxmrsxuqmnkrzhgvtgdgtykhcglurvppvcwhrhrjoislonvvglhdciilduvuiebmffaagxerjeewmtcwmhmtwlxtvlbocczlrppmpjbpnifqtlninyzjtmazxdbzwxthpvrfulvrspycqcghuopjirzoeuqhetnbrcdakilzmklxwudxxhwilasbjjhhfgghogqoofsufysmcqeilaivtmfziumjloewbkjvaahsaaggteppqyuoylgpbdwqubaalfwcqrjeycjbbpifjbpigjdnnswocusuprydgrtxuaojeriigwumlovafxnpibjopjfqzrwemoinmptxddgcszmfprdrichjeqcvikynzigleaajcysusqasqadjemgnyvmzmbcfrttrzonwafrnedglhpudovigwvpimttiketopkvqw") // 10
+// maxNumberOfBalloons("leetcode")
+// maxNumberOfBalloons("loonbalxballpoon")
